@@ -11,7 +11,7 @@ board = [['R', 'K', 'B', 'C', 'Q', 'B', 'K', 'R'],
 
 
 def print_board(board: list):
-    final_str = ' ' * 2 + '-' * 33 + '\n'
+    final_str = '    ' + 'H   G   F   E   D   C   B   A' + '\n' + ' ' * 2 + '-' * 33 + '\n'
     for r, row in enumerate(board):
         row_str = str(r + 1) + ' | ' + str(row[0])
         for c, cell in enumerate(row):
