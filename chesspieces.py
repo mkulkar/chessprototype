@@ -1,15 +1,4 @@
 #! usr/bin/env python3
-
-board = [['r', 'k', 'b', 'c', 'q', 'b', 'k', 'r'],
-         ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
-         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-         ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
-         ['R', 'K', 'B', 'C', 'Q', 'B', 'K', 'R']]
-
-
 class Piece(object):
     # TODO: _name should be an enum value
     def __init__(self, _name, _color):
@@ -21,6 +10,20 @@ class Piece(object):
         output = self.name[0].upper() if should_caps else self.name[0].lower()
         return output
 
+    def __str__(self):
+        return self.__repr__()
+
+
+
+board = [[Piece('rook','white'), Piece('knight','white'), Piece('bishop','white'), Piece('cing','white'), Piece('queen','white'), Piece('bishop','white'), Piece('knight','white'), Piece('rook','white')],
+         [Piece('pawn','white'), Piece('pawn','white'), Piece('pawn','white'), Piece('pawn','white'), Piece('pawn','white'), Piece('pawn','white'), Piece('pawn','white'), Piece('pawn','white')],
+         [Piece('empty','white'), Piece('empty','black'), Piece('empty','white'), Piece('empty','black'), Piece('empty','white'), Piece('empty','black'), Piece('empty','white'), Piece('empty','black')],
+         [Piece('empty','black'), Piece('empty','white'), Piece('empty','black'), Piece('empty','white'), Piece('empty','black'), Piece('empty','white'), Piece('empty','black'), Piece('empty','white')],
+         [Piece('empty','white'), Piece('empty','black'), Piece('empty','white'), Piece('empty','black'), Piece('empty','white'), Piece('empty','black'), Piece('empty','white'), Piece('empty','black')],
+         [Piece('empty','black'), Piece('empty','white'), Piece('empty','black'), Piece('empty','white'), Piece('empty','black'), Piece('empty','white'), Piece('empty','black'), Piece('empty','white')],
+         [Piece('pawn','black'), Piece('pawn','black'), Piece('pawn','black'), Piece('pawn','black'), Piece('pawn','black'), Piece('pawn','black'), Piece('pawn','black'), Piece('pawn','black')],
+         [Piece('rook','black'), Piece('knight','black'), Piece('bishop','black'), Piece('cing','black'), Piece('queen','black'), Piece('bishop','black'), Piece('knight','black'), Piece('rook','black')]]
+
 
 def print_board(board: list):
     final_str = '    ' + 'H   G   F   E   D   C   B   A' + '\n' + ' ' * 2 + '-' * 33 + '\n'
@@ -29,12 +32,12 @@ def print_board(board: list):
         for c, cell in enumerate(row):
             if c == 0:
                 continue
-            row_str += ' | ' + row[c]
+            row_str += ' | ' + str(row[c])
         row_str += ' | '
         final_str += row_str + '\n' + ' ' * 2 + "-" * 33 + '\n'
     print(final_str)
 
 
-# print_board(board)
+print_board(board)
 p = Piece("knight", "white")
 print(p)
