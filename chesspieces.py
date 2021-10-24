@@ -1,18 +1,23 @@
 #! usr/bin/env python3
 
 class Piece(object):
+    curr_id = 0
+
     # TODO: _name should be an enum value
     def __init__(self, _name, _color):
         self.name = _name
         self.color = _color
+        self.id = Piece.curr_id
+        Piece.curr_id += 1
 
     def __repr__(self):
         should_caps = True if self.color == 'black' else False
         output = self.name[0].upper() if should_caps else self.name[0].lower()
+        output += "{:0>2d}".format(self.id)
         return output
 
     def __str__(self):
-        return repr(self)
+        return repr(self)[0]
 
 
 board = [
@@ -99,17 +104,30 @@ board = [
 ]
 
 
-def print_board(board: list):
-    final_str = '    ' + 'H   G   F   E   D   C   B   A' + '\n' + ' ' * 2 + '-' * 33 + '\n'
+def print_board(board: list, repr_mode=False):
+    if not repr_mode:
+        final_str = '    ' + 'H   G   F   E   D   C   B   A' + '\n' + ' ' * 2 + '-' * 33 + '\n'
+    else:
+        final_str = '    ' + 'H     G     F     E     D     C     B     A' + '\n' + ' ' * 2 + '-' * 49 + '\n'
     for r, row in enumerate(board):
-        row_str = str(r + 1) + ' | ' + (str(row[0]) if row[0] else ' ')
+        if repr_mode:
+            row_str = str(
+                r + 1) + ' | ' + (repr(row[0]) if row[0] else '   ')
+        else:
+            row_str = str(r + 1) + ' | ' + (str(row[0]) if row[0] else ' ')
         for c, cell in enumerate(row):
             if c == 0:
                 continue
-            row_str += ' | ' + (str(row[c]) if row[c] else ' ')
+            if repr_mode:
+                row_str += ' | ' + (repr(row[c]) if row[c] else '   ')
+            else:
+                row_str += ' | ' + (str(row[c]) if row[c] else ' ')
         row_str += ' | '
-        final_str += row_str + '\n' + ' ' * 2 + "-" * 33 + '\n'
+        if repr_mode:
+            final_str += row_str + '\n' + ' ' * 2 + "-" * 49 + '\n'
+        else:
+            final_str += row_str + '\n' + ' ' * 2 + "-" * 33 + '\n'
     print(final_str)
 
 
-print_board(board)
+print_board(board, True)
