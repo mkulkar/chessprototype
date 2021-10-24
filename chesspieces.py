@@ -10,6 +10,18 @@ board = [['R', 'K', 'B', 'C', 'Q', 'B', 'K', 'R'],
          ['R', 'K', 'B', 'C', 'Q', 'B', 'K', 'R']]
 
 
+class Piece(object):
+    # TODO: _name should be an enum value
+    def __init__(self, _name, _color):
+        self.name = _name
+        self.color = _color
+
+    def __repr__(self):
+        should_caps = True if self.color == 'black' else False
+        output = self.name[0].upper() if should_caps else self.name[0].lower()
+        return output
+
+
 def print_board(board: list):
     final_str = '    ' + 'H   G   F   E   D   C   B   A' + '\n' + ' ' * 2 + '-' * 33 + '\n'
     for r, row in enumerate(board):
@@ -23,4 +35,6 @@ def print_board(board: list):
     print(final_str)
 
 
-print_board(board)
+# print_board(board)
+p = Piece("knight", "white")
+print(p)
