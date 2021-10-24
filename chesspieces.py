@@ -82,15 +82,15 @@ board = [
         None  # A
     ],
     [  # 7
-        Piece('pawn', 'black'),
         Piece('pawn', 'black'),  # H
         Piece('pawn', 'black'),  # G
         Piece('pawn', 'black'),  # F
         Piece('pawn', 'black'),  # E
         Piece('pawn', 'black'),  # D
         Piece('pawn', 'black'),  # C
-        Piece('pawn', 'black')  # B
-    ],  # A
+        Piece('pawn', 'black'),  # B
+        Piece('pawn', 'black')  # A
+    ],  
     [  # 8
         Piece('rook', 'black'),  # H
         Piece('knight', 'black'),  # G
